@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import os
 import time
-import urllib
+import urllib.request
 
 
 
@@ -42,6 +42,7 @@ def guardarImg(driver,nImg,ruta,name):
         for i in range(7):
             driver.find_element_by_xpath('//body').send_keys(Keys.CONTROL+Keys.END)
             time.sleep(0.6)
+    
     try:
         imagenes=driver.find_elements_by_xpath('//img[@class="rg_i Q4LuWd"]')             
     except:
@@ -54,17 +55,17 @@ def guardarImg(driver,nImg,ruta,name):
         try:
             imagen.click()            
             xpathIMG='/html/body/div[3]/c-wiz/div[3]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img'
-            srcObject=WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,xpathIMG)))
+            srcObject=WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH,xpathIMG)))
             src=srcObject.get_attribute('src')
             
             ext=src.split('.')[-1:]
             ext='.'+ext[0]
             if len(ext)>5 or len(ext)<2:               
-                urllib.request.urlretrieve(src,ruta+'\\'+name+str(i+1)+'.png')            
+                urllib.request.urlretrieve(src,ruta+'\\'+name+'_'+str(i+1)+'.png')            
                 """ if sis=='Linux':               
                     urllib.request.urlretrieve(src,ruta+'/'+name+str(i+1)+'.png') """            
             else:
-                urllib.request.urlretrieve(src,ruta+'\\'+name+str(i+1)+ext)
+                urllib.request.urlretrieve(src,ruta+'\\'+name+'_'+str(i+1)+ext)
 
                 """ if sis=='Linux':
                     urllib.request.urlretrieve(src,ruta+'/'+name+str(i+1)+ext) """

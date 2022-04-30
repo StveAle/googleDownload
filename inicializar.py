@@ -8,7 +8,7 @@ def verificarDriver():
     chrome_options=Options()
     chrome_options.add_argument("--headless")
     thisFolder=os.getcwd()
-    rutaDriver='./chromedriver.exce'
+    rutaDriver=r'./chromedriver.exe'
     try:
         driver=webdriver.Chrome(rutaDriver, options=chrome_options)
     except:
