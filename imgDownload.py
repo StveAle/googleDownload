@@ -1,9 +1,9 @@
-from lib2to3.pgen2.token import OP
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import os
 
 #Bebecita bblin
 
@@ -13,8 +13,14 @@ from selenium.webdriver.common.by import By
 #Esta función verifica que esté actualizado el controlador de Chrome
 def verificarDriver():
     chrome_options=Options()
+    chrome_options.add_argument("--headless")
+    thisFolder=os.getcwd()
     rutaDriver='./chromedriver.exce'
     try:
         driver=webdriver.Chrome(rutaDriver, options=chrome_options)
     except:
         print('El controlador de chrome está desactualizado o no se encuentra en la ruta definida')
+        print('Puedes descargar el controlador en: https://sites.google.com/a/chromium.org/chromedriver/home')
+        input(f'Recuerda guardar el driver en: {thisFolder}')
+        exit()
+        
