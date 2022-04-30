@@ -7,7 +7,6 @@ import time
 import urllib.request
 
 
-
 #Esta función abre el navegador, ingresa a google y navega en google imagenes.
 #La variable find es lo que se va a buscar en google imagenes. 
 def buscarImg(driver,find):
