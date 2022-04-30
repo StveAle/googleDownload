@@ -1,26 +1,22 @@
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+import inicializar as bt
+import funciones_utiles as fu
 import os
 
-#Bebecita bblin
+######################################################################################
+#                           PENDIENTES
+# 1-Eliminar los mensajes de error
+# 2-                            
 
-#sta vivo el pinche proyecto uwu
-#A partir de aquí empieza el código espagueti
+######################################################################################
 
-#Esta función verifica que esté actualizado el controlador de Chrome
-def verificarDriver():
-    chrome_options=Options()
-    chrome_options.add_argument("--headless")
-    thisFolder=os.getcwd()
-    rutaDriver='./chromedriver.exce'
-    try:
-        driver=webdriver.Chrome(rutaDriver, options=chrome_options)
-    except:
-        print('El controlador de chrome está desactualizado o no se encuentra en la ruta definida')
-        print('Puedes descargar el controlador en: https://sites.google.com/a/chromium.org/chromedriver/home')
-        input(f'Recuerda guardar el driver en: {thisFolder}')
-        exit()
-        
+
+if __name__=='__main__':
+    find=input('Ingrese la o las palabras clave de lo que quiere buscar: ')
+    driver=bt.verificarDriver()
+    fu.buscarImg(driver,find)    
+    nImagenes=input('¿Cuantas imagenes desea descargar?')
+    folderAddress=fu.checkFolder(find)
+    fu.guardarImg(driver,nImagenes,folderAddress,find)
+
+    input('LAS IMAGENES FUERON GUARDADES CON EXITO')
+    
